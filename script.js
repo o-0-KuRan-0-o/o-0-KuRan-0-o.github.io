@@ -22,7 +22,7 @@ thumbnails.forEach((button) => {
       mainPlaceholder.style.display = "grid";
     };
     mainImage.src = imagePath;
-    mainImage.alt = button.querySelector("img")?.alt || "選択中の画像";
+    mainImage.alt = button.querySelector("img")?.alt || "チケット";
   });
 });
 
