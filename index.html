@@ -3,60 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>画像ギャラリー</title>
+  <title>キャラクター 一覧</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main class="page">
     <!-- 上部のメイン画像：images/header.jpg を差し替えてください -->
     <header class="header-image">
-      <img src="images/header.jpg" alt="ヘッダー画像" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-      <span class="image-placeholder">ヘッダー画像</span>
+      <img src="images/header.jpg" alt="キャラクター 一覧" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+      <span class="image-placeholder">キャラクター 一覧</span>
     </header>
 
-    <section class="gallery" aria-label="画像ギャラリー">
+    <section class="gallery" aria-label="キャラクター 一覧">
       <nav class="thumbnail-list" aria-label="表示する画像を選択">
         <!-- images/image1.jpg ～ image7.jpg を差し替えてください -->
         <button class="thumbnail active" type="button" data-image="images/image1.jpg" aria-pressed="true">
-          <img src="images/image1.jpg" alt="画像1" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-          <span class="thumb-placeholder">画像1</span>
+          <img src="images/Tab_001-005.jpg" alt="001-005" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+          <span class="thumb-placeholder">001-005</span>
         </button>
         <button class="thumbnail" type="button" data-image="images/image2.jpg" aria-pressed="false">
-          <img src="images/image2.jpg" alt="画像2" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-          <span class="thumb-placeholder">画像2</span>
+          <img src="images/Tab_006-010.jpg" alt="006-010" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+          <span class="thumb-placeholder">006-010</span>
         </button>
         <button class="thumbnail" type="button" data-image="images/image3.jpg" aria-pressed="false">
-          <img src="images/image3.jpg" alt="画像3" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-          <span class="thumb-placeholder">画像3</span>
+          <img src="images/Tab_011-015.jpg" alt="011-015" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+          <span class="thumb-placeholder">011-015</span>
         </button>
         <button class="thumbnail" type="button" data-image="images/image4.jpg" aria-pressed="false">
-          <img src="images/image4.jpg" alt="画像4" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-          <span class="thumb-placeholder">画像4</span>
+          <img src="images/Tab_016-020.jpg" alt="016-020" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+          <span class="thumb-placeholder">016-020</span>
         </button>
         <button class="thumbnail" type="button" data-image="images/image5.jpg" aria-pressed="false">
-          <img src="images/image5.jpg" alt="画像5" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-          <span class="thumb-placeholder">画像5</span>
+          <img src="images/Tab_021-025.jpg" alt="021-025" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+          <span class="thumb-placeholder">021-025</span>
         </button>
         <button class="thumbnail" type="button" data-image="images/image6.jpg" aria-pressed="false">
-          <img src="images/image6.jpg" alt="画像6" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-          <span class="thumb-placeholder">画像6</span>
+          <img src="images/Tab_026-030.jpg" alt="026-030" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+          <span class="thumb-placeholder">026-030</span>
         </button>
         <button class="thumbnail" type="button" data-image="images/image7.jpg" aria-pressed="false">
-          <img src="images/image7.jpg" alt="画像7" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-          <span class="thumb-placeholder">画像7</span>
+          <img src="images/Tab_031-035.jpg" alt="031-035" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+          <span class="thumb-placeholder">031-035</span>
         </button>
       </nav>
 
       <div class="main-display" id="mainDisplay">
-        <img id="mainImage" src="images/image1.jpg" alt="選択中の画像"
+        <img id="mainImage" src="images/Ticket_Blank.png" alt="Ticket_Blank"
              onerror="this.style.display='none'; document.getElementById('mainPlaceholder').style.display='grid';">
-        <div class="main-placeholder" id="mainPlaceholder">画像</div>
+        <div class="main-placeholder" id="mainPlaceholder">チケット</div>
       </div>
     </section>
 
     <!-- 下部のボタン：href を移動先URLに変更してください -->
     <footer class="footer">
-      <a class="bottom-button" href="#" id="bottomButton">リンク</a>
+      <a class="bottom-button" href="#" id="bottomButton">TOP</a>
     </footer>
   </main>
 
