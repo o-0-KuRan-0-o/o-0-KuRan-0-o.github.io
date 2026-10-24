@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>キャラクター 一覧</title>
+  <link rel="stylesheet" href="Character_List_style.css">
+</head>
+<body>
+  <main class="page">
+    <header class="header-image">
+      <img src="images/Page_Character_List/Header.png" alt="キャラクター 一覧" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+      <span class="image-placeholder">キャラクター 一覧</span>
+    </header>
+
+    <section class="gallery" aria-label="キャラクターNO.">
+      <nav class="thumbnail-list" aria-label="キャラクターNO.">
+        <button class="thumbnail active" type="button" aria-pressed="true">
+          <img src="images/Page_Character_List/Tab_001-005.png" alt="001-005" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+          <span class="thumb-placeholder">001-005</span>
+        </button>
+        <button class="thumbnail" type="button" aria-pressed="false">
+          <img src="images/Page_Character_List/Tab_006-010.png" alt="006-010" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+          <span class="thumb-placeholder">006-010</span>
+        </button>
+        <button class="thumbnail" type="button" aria-pressed="false">
+          <img src="images/Page_Character_List/Tab_011-015.png" alt="011-015" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+          <span class="thumb-placeholder">011-015</span>
+        </button>
+        <button class="thumbnail" type="button" aria-pressed="false">
+          <img src="images/Page_Character_List/Tab_016-020.png" alt="016-020" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+          <span class="thumb-placeholder">016-020</span>
+        </button>
+        <button class="thumbnail" type="button" aria-pressed="false">
+          <img src="images/Page_Character_List/Tab_021-025.png" alt="021-025" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+          <span class="thumb-placeholder">021-025</span>
+        </button>
+      </nav>
+
+      <div class="main-display" id="mainDisplay">
+        <img id="mainImage" src="images/Page_Character_List/Ticket_Blank.png" alt="Ticket"
+             onerror="this.style.display='none'; document.getElementById('mainPlaceholder').style.display='grid';">
+        <div class="main-placeholder" id="mainPlaceholder">チケット</div>
+      </div>
+    </section>
+
+    <!-- 下部のボタン：href を移動先URLに変更してください -->
+    <footer class="footer">
+      <a class="bottom-button" href="index.html" id="bottomButton">TOP</a>
+    </footer>
+  </main>
+
+  <script src="Character_List_script.js"></script>
+  <script>
+    // 初期表示も001〜005のチケットスタックにするため、最初のタブを選択状態で実行
+    window.addEventListener("DOMContentLoaded", () => {
+      document.querySelector('.thumbnail.active')?.click();
+    });
+  </script>
+</body>
+</html>

@@ -1,65 +1,405 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>キャラクター 一覧</title>
-  <link rel="stylesheet" href="style.css">
+
+  <title>ホームページ</title>
+  <style>
+    /* =========================
+       基本設定
+    ========================= */
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      background-color: #242424;
+      color: #4e4e4e;
+
+      font-family:
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        "Noto Serif JP",
+        serif;
+    }
+
+    /* =========================
+       ボックス全体の配置
+    ========================= */
+
+    .menu {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    /* =========================
+       各ボックスの共通デザイン
+    ========================= */
+
+    .card {
+      position: relative;
+
+      aspect-ratio: 1 / 0.9;
+      min-width: 0;
+
+      border: 4px solid #4e4e4e;
+      border-radius: 30px;
+      overflow: hidden;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 12px;
+
+      background-color: #242424;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+
+      font-size: clamp(18px, 4.5vw, 30px);
+      line-height: 1.5;
+    }
+
+    /* =========================
+       クリック可能なボックス
+       キャラクター一覧・お題箱のみ
+    ========================= */
+
+    a.card {
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    a.card:hover {
+      opacity: 0.8;
+    }
+
+    a.card:focus-visible {
+      outline: 3px solid #505050;
+      outline-offset: 4px;
+    }
+
+    /* =========================
+       プロフィール
+    ========================= */
+
+    .profile {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+
+      gap: 8px;
+      padding: 10px;
+    }
+
+    /* 画像とニックネームを横並びにする */
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      width: 100%;
+      min-width: 0;
+    }
+
+    /* プロフィール画像 */
+
+    .profile-image {
+      flex: 0 0 40%;
+      width: 40%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+
+      border: 4px solid #4e4e4e;
+      border-radius: 25px;
+      background-color: #242424;
+    }
+
+    /* ニックネーム */
+    .nickname {
+      flex: 1;
+      min-width: 0;
+
+      font-size: clamp(19px, 6.0vw, 42px);
+      font-weight: bold;
+      text-align: center;
+
+      overflow-wrap: anywhere;
+    }
+
+    /* プロフィール文 */
+    .profile-text {
+      width: 100%;
+      margin-top: auto;
+      margin-bottom: auto;
+
+      font-size: clamp(13px, 3vw, 21px);
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    /* リンクリスト */
+    .link-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* リンクの見た目 */
+    .link-list a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* マウスを乗せたとき */
+    .link-list a:hover {
+      color: #4e4e4e;
+    }
+
+    /* キャラクター一覧の背景動画 */
+    .character-card {
+      position: relative;
+      isolation: isolate;
+    }
+
+    /* 動画をボックス全体に表示 */
+    .character-card .card-video {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+    }
+
+    /* 文字を動画の上に表示 */
+    .character-card .card-text {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 動画ボックス */
+    .video {
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* 動画本体 */
+    .video video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+    }
+
+    /* 更新記録ボックス */
+    .updates {
+      padding: 12px;
+      align-items: stretch;
+      justify-content: flex-start;
+      overflow: hidden;
+    }
+
+    /* ボックス内部をスクロール */
+    .updates-content {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      text-align: left;
+      font-size: 14px;
+      line-height: 1.6;
+
+      scrollbar-width: thin;
+      scrollbar-color: #888888 transparent;
+    }
+
+    /* 各更新記録 */
+    .updates-content p {
+      margin: 0 0 10px;
+      overflow-wrap: anywhere;
+    }
+
+    /* =========================
+       スマートフォン対応
+    ========================= */
+
+    @media (max-width: 380px) {
+      body {
+        padding: 12px;
+      }
+
+      .menu {
+        gap: 10px;
+      }
+
+      .card {
+        border-width: 3px;
+        border-radius: 22px;
+        padding: 6px;
+      }
+
+      .profile {
+        padding: 6px;
+        gap: 6px;
+      }
+
+      .profile-image {
+        border-width: 3px;
+        border-radius: 18px;
+      }
+
+      .profile-header {
+        gap: 5px;
+      }
+
+      .nickname {
+        font-size: 17px;
+      }
+
+      .profile-text {
+        font-size: 12px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <main class="page">
-    <!-- 上部のメイン画像：images/header.jpg を差し替えてください -->
-    <header class="header-image">
-      <img src="images/header.jpg" alt="キャラクター 一覧" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-      <span class="image-placeholder">キャラクター 一覧</span>
-    </header>
 
-    <section class="gallery" aria-label="キャラクター 一覧">
-      <nav class="thumbnail-list" aria-label="キャラクター 一覧">
-        <!-- images/image1.jpg ～ image7.jpg を差し替えてください -->
-        <button class="thumbnail active" type="button" data-image="images/image1.jpg" aria-pressed="true">
-          <img src="images/Tab_001-005.png" alt="001-005" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-          <span class="thumb-placeholder">001-005</span>
-        </button>
-        <button class="thumbnail" type="button" data-image="images/image2.jpg" aria-pressed="false">
-          <img src="images/Tab_006-010.png" alt="006-010" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-          <span class="thumb-placeholder">006-010</span>
-        </button>
-        <button class="thumbnail" type="button" data-image="images/image3.jpg" aria-pressed="false">
-          <img src="images/Tab_011-015.png" alt="011-015" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-          <span class="thumb-placeholder">011-015</span>
-        </button>
-        <button class="thumbnail" type="button" data-image="images/image4.jpg" aria-pressed="false">
-          <img src="images/Tab_016-020.png" alt="016-020" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-          <span class="thumb-placeholder">016-020</span>
-        </button>
-        <button class="thumbnail" type="button" data-image="images/image5.jpg" aria-pressed="false">
-          <img src="images/Tab_021-025.png" alt="021-025" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-          <span class="thumb-placeholder">021-025</span>
-        </button>
-        <button class="thumbnail" type="button" data-image="images/image6.jpg" aria-pressed="false">
-          <img src="images/Tab_026-030.png" alt="026-030" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-          <span class="thumb-placeholder">026-030</span>
-        </button>
-        <button class="thumbnail" type="button" data-image="images/image7.jpg" aria-pressed="false">
-          <img src="images/Tab_031-035.png" alt="031-035" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-          <span class="thumb-placeholder">031-035</span>
-        </button>
-      </nav>
+  <main class="menu">
 
-      <div class="main-display" id="mainDisplay">
-        <img id="mainImage" src="images/Ticket_Blank.png" alt="Ticket_Blank"
-             onerror="this.style.display='none'; document.getElementById('mainPlaceholder').style.display='grid';">
-        <div class="main-placeholder" id="mainPlaceholder">チケット</div>
+    <!-- =========================
+         プロフィール
+         クリック不可
+    ========================= -->
+
+    <div
+      class="card profile"
+      style="background-image: url('images/profile_bg.png');"
+    >
+
+      <div class="profile-header">
+
+        <img
+          class="profile-image"
+          src="images/Homepage/profile.jpg"
+          alt="プロフィール画像"
+        >
+
+        <span class="nickname">
+          紅藍
+        </span>
+
       </div>
-    </section>
 
-    <!-- 下部のボタン：href を移動先URLに変更してください -->
-    <footer class="footer">
-      <a class="bottom-button" href="#" id="bottomButton">TOP</a>
-    </footer>
+      <div class="profile-text">
+        絵を描いたり3Dモデリングやったりしてます。</br>
+        自作左手デバイスの製作・販売もしています。</br>
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         リンクリスト
+         クリック不可
+    ========================= -->
+
+    <div
+      class="card"
+      style="background-image: url('images/links_bg.png');"
+    >
+      <div class="link-list">
+        LINK</br>
+        <a href="https://x.com/_K_u_R_a_n_2" target="_blank" rel="noopener noreferrer">X（旧Twitter）</a>
+        <a href="https://t.co/MnoEHXhsln" target="_blank" rel="noopener noreferrer">BOOTH</a>
+        <a href="https://t.co/lIGmwUPkUN" target="_blank" rel="noopener noreferrer">SKIMA</a>
+      </div>
+    </div>
+
+
+    <!-- キャラクター一覧：背景動画 -->
+    <a class="card character-card" href="Character_List.html">
+
+      <video
+        class="card-video"
+        autoplay
+        muted
+        loop
+        playsinline
+      >
+        <source src="images/Homepage/movie002.webm" type="video/webm">
+      </video>
+
+      <span class="card-text">
+        キャラクター一覧
+      </span>
+
+    </a>
+
+
+    <!-- =========================
+         お題箱
+         クリック可能
+    ========================= -->
+
+    <a
+      class="card"
+      href="https://odaibako.net/u/KuRan"
+      style="background-image: url('images/request_bg.png');"
+    >
+      お題箱
+    </a>
+
+
+    <!-- 動画 -->
+    <div class="card video">
+      <video
+        src="images/Homepage/movie001.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+      ></video>
+    </div>
+
+
+    <!-- 更新記録：ボックス内スクロール -->
+    <div
+      class="card updates"
+      style="background-image: url('images/updates_bg.png');"
+    >
+      <div class="updates-content">
+        <p>2026/10/24　<a href="https://t.co/TOTcYGHDL1" target="_blank" rel="noopener noreferrer">左手デバイス先行販売</a></p>
+        <p>2026/10/24　サイトを開設しました。</p>
+      </div>
+    </div>
+
   </main>
 
-  <script src="script.js"></script>
 </body>
 </html>

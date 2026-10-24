@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>藍華</title>
+
+  <style>
+    /* 全体設定 */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 5px;
+      background: #242424;
+      color: #fff;
+      font-family:
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        "Noto Serif JP",
+        serif;
+    }
+
+    /* ページ全体 */
+    .container {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    /* =================================
+       上部の大きな画像エリア
+    ================================= */
+
+    .main-image {
+      width: 100%;
+      aspect-ratio: 1.19 / 1;
+
+      border: 8px solid #4e4e4e;
+      border-radius: 30px;
+
+      position: relative;
+      overflow: hidden;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background: #ffffff;
+    }
+
+    /* 上部の画像 */
+    .main-img {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+    }
+
+    /* 戻るボタン */
+    .back-button {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      z-index: 2;
+
+      width: 85px;
+      height: 85px;
+
+      border: 8px solid #4e4e4e;
+      border-radius: 50%;
+
+      background: #242424;
+      color: #fff;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-size: 23px;
+      text-decoration: none;
+    }
+
+    .back-button:hover {
+      background: #eeeeee;
+    }
+
+    /* =================================
+       中段：画像とテキスト
+    ================================= */
+
+    .middle-section {
+      display: grid;
+      grid-template-columns: 62% 38%;
+      gap: 5px;
+    }
+
+    /* 中段左の画像ボックス */
+    .middle-image {
+      min-width: 0;
+      min-height: 130px;
+
+      background: #242424;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      overflow: hidden;
+    }
+
+    /* 中央の画像 */
+    .sub-img {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+    }
+
+    /* 中段右のテキストボックス */
+    .middle-text {
+      min-width: 0;
+      min-height: 130px;
+
+      border: 8px solid #4e4e4e;
+      background: #242424;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      text-align: center;
+
+      font-size: clamp(18px, 4vw, 30px);
+      line-height: 1.5;
+    }
+
+    /* =================================
+       下段：リストとプロフィール
+    ================================= */
+
+    .bottom-section {
+      display: grid;
+      grid-template-columns: 40% 60%;
+      gap: 5px;
+    }
+
+    /* 下段左のリスト */
+    .list-box {
+      min-width: 0;
+      min-height: 200px;
+
+      border: 8px solid #4e4e4e;
+      background: #242424;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .list-box ul {
+      margin: 0;
+      padding-left: 1.2em;
+
+      font-size: clamp(18px, 4vw, 30px);
+      line-height: 1.35;
+    }
+
+    /* クリックできる画像リスト */
+    .image-select-button {
+      padding: 0;
+      border: none;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      line-height: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .image-select-button:hover {
+      text-decoration: underline;
+    }
+
+    .image-select-button:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 3px;
+    }
+
+    /* 下段右のプロフィール */
+    .profile-box {
+      min-width: 0;
+      height: 200px;
+
+      border: 8px solid #4e4e4e;
+      background: #242424;
+
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* スクロール可能なプロフィール内容 */
+    .profile-content-wrapper {
+      position: absolute;
+      top: 55px;
+      right: 10px;
+      bottom: 10px;
+      left: 10px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: #777 #242424;
+    }
+
+    /* プロフィール見出し */
+    .profile-title {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+
+      margin: 0;
+      padding: 3px 15px;
+
+      border: 7px solid #4e4e4e;
+      border-radius: 30px;
+
+      background: #242424;
+
+      font-size: clamp(18px, 4vw, 30px);
+      font-weight: normal;
+      white-space: nowrap;
+    }
+
+    /* プロフィール内容 */
+    .profile-content {
+      margin: 20;
+      font-size: clamp(16px, 3vw, 23px);
+      overflow-wrap: anywhere;
+    }
+
+    /* =================================
+       スマートフォン向け
+    ================================= */
+
+    @media (max-width: 480px) {
+
+      /* 戻るボタン */
+      .back-button {
+        width: 60px;
+        height: 60px;
+
+        border-width: 5px;
+        font-size: 17px;
+      }
+
+      /* 上部画像エリア */
+      .main-image {
+        border-width: 6px;
+        border-radius: 24px;
+      }
+
+      /* 中段 */
+      .middle-section {
+        grid-template-columns: 60% 40%;
+      }
+
+      .middle-image,
+      .middle-text {
+        border-width: 5px;
+        min-height: 100px;
+      }
+
+      .middle-text {
+        font-size: clamp(14px, 4vw, 20px);
+      }
+
+      /* 下段 */
+      .bottom-section {
+        grid-template-columns: 40% 60%;
+      }
+
+      .list-box,
+      .profile-box {
+        border-width: 5px;
+        min-height: 180px;
+      }
+
+      /* リスト */
+      .list-box ul {
+        font-size: clamp(14px, 4vw, 20px);
+      }
+
+      /* プロフィール */
+      .profile-box {
+        height: 180px;
+      }
+
+      .profile-content-wrapper {
+        top: 50px;
+        right: 5px;
+        bottom: 5px;
+        left: 5px;
+      }
+
+      .profile-title {
+        border-width: 5px;
+        padding: 3px 8px;
+      }
+
+      .profile-content {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <!-- =========================
+         上部：メイン画像
+    ========================== -->
+
+    <section class="main-image">
+
+      <!-- 戻るボタン -->
+      <a href="../Character_List.html" class="back-button">
+        戻る
+      </a>
+
+      <!-- 上部に表示する画像 -->
+      <img
+        src="../images/Page_Characters/Character002_1.jpg"
+        alt="メイン画像"
+        class="main-img"
+      >
+
+    </section>
+
+
+    <!-- =========================
+         中段：画像とテキスト
+    ========================== -->
+
+    <section class="middle-section">
+
+      <!-- 中央の画像 -->
+      <div class="middle-image">
+
+        <img
+          src="../images/Page_Character_List/Ticket_002.png"
+          alt="画像"
+          class="sub-img"
+        >
+
+      </div>
+
+      <!-- 右側のテキスト -->
+      <div class="middle-text">
+
+        <div>性別：♀</div>
+        <div>種族：人間</div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         下段：リストとプロフィール
+    ========================== -->
+
+    <section class="bottom-section">
+
+      <!-- 左側のリスト -->
+      <div class="list-box">
+
+        <ul>
+          <li><button type="button" class="image-select-button" data-image="1">画像1</button></li>
+          <li><button type="button" class="image-select-button" data-image="2">画像2</button></li>
+          <li><button type="button" class="image-select-button" data-image="3">画像3</button></li>
+          <li><button type="button" class="image-select-button" data-image="4">画像4</button></li>
+        </ul>
+
+      </div>
+
+      <!-- 右側のプロフィール -->
+      <div class="profile-box">
+
+        <h2 class="profile-title">
+          プロフィール
+        </h2>
+
+        <div class="profile-content-wrapper">
+          <p class="profile-content">
+            かいわ が にがてで き が ちいさい<br>
+            だが かいりき の もちぬし ！<br>
+            てんねん なので ときおり とんでもないことを<br>
+            してしまうことが あるぞ<br>
+            くれん に いつも たすけてもらってる が<br>
+            ちからしごと は かわりに こなしている ！<br>
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    // リストをクリックすると、上部のメイン画像を切り替える
+    const mainImage = document.querySelector(".main-img");
+    const imageButtons = document.querySelectorAll(".image-select-button");
+
+    imageButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const imageNumber = button.dataset.image;
+        mainImage.src = `../images/Page_Characters/Character002_${imageNumber}.jpg`;
+      });
+    });
+  </script>
+
+</body>
+</html>
