@@ -193,6 +193,45 @@
       isolation: isolate;
     }
 
+    /* お題箱：ランダム背景画像 */
+    .request-card {
+      isolation: isolate;
+      background-image: none !important;
+    }
+
+    .request-background {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .request-background img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .request-background img.is-visible {
+      opacity: 1;
+    }
+
+    .request-card .card-text {
+      position: relative;
+      z-index: 1;
+      color: #ffffff;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 8px 14px;
+      border-radius: 10px;
+    }
+
     /* 動画をボックス全体に表示 */
     .character-card .card-video {
       position: absolute;
@@ -209,6 +248,10 @@
     .character-card .card-text {
       position: relative;
       z-index: 1;
+      color: #ffffff;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 8px 14px;
+      border-radius: 10px;
     }
 
     /* 動画ボックス */
@@ -368,7 +411,7 @@
       </video>
 
       <span class="card-text">
-        キャラクター一覧
+        キャラクター</br>一覧
       </span>
 
     </a>
@@ -380,11 +423,24 @@
     ========================= -->
 
     <a
-      class="card"
+      class="card request-card"
       href="https://odaibako.net/u/KuRan"
-      style="background-image: url('images/request_bg.png');"
     >
-      お題箱
+      <span class="request-background" aria-hidden="true">
+        <img class="is-visible" src="images/Page_Request/Request_IMG_001.jpg" alt="">
+        <img src="images/Page_Request/Request_IMG_002.jpg" alt="">
+        <img src="images/Page_Request/Request_IMG_003.jpg" alt="">
+        <img src="images/Page_Request/Request_IMG_004.jpg" alt="">
+        <img src="images/Page_Request/Request_IMG_005.jpg" alt="">
+        <img src="images/Page_Request/Request_IMG_006.jpg" alt="">
+        <img src="images/Page_Request/Request_IMG_007.jpg" alt="">
+        <img src="images/Page_Request/Request_IMG_008.jpg" alt="">
+        <img src="images/Page_Request/Request_IMG_009.jpg" alt="">
+        <img src="images/Page_Request/Request_IMG_010.jpg" alt="">
+        <img src="images/Page_Request/Request_IMG_011.jpg" alt="">
+        <img src="images/Page_Request/Request_IMG_012.jpg" alt="">
+      </span>
+      <span class="card-text">お題箱</span>
     </a>
 
 
@@ -412,6 +468,34 @@
     </div>
 
   </main>
+
+  <script>
+    // お題箱の背景画像を4秒ごとにランダムで切り替える
+    // 同じ画像が連続しないようにし、切り替えはCSSでフェードさせる
+    document.addEventListener("DOMContentLoaded", () => {
+      const images = Array.from(
+        document.querySelectorAll(".request-background img")
+      );
+
+      if (images.length < 2) return;
+
+      let currentIndex = images.findIndex((image) =>
+        image.classList.contains("is-visible")
+      );
+      if (currentIndex < 0) currentIndex = 0;
+
+      window.setInterval(() => {
+        let nextIndex;
+        do {
+          nextIndex = Math.floor(Math.random() * images.length);
+        } while (nextIndex === currentIndex);
+
+        images[nextIndex].classList.add("is-visible");
+        images[currentIndex].classList.remove("is-visible");
+        currentIndex = nextIndex;
+      }, 4000);
+    });
+  </script>
 
 </body>
 </html>
