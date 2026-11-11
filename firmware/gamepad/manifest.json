@@ -1,0 +1,19 @@
+
+{
+  "name": "M5StampS3A Gamepad Controller",
+  "version": "1.0.0",
+  "new_install_prompt_erase": true,
+  "new_install_improv_wait_time": 0,
+  "builds": [
+    {
+      "chipFamily": "ESP32-S3",
+      "improv": false,
+      "parts": [
+        {
+          "path": "merged-firmware.bin",
+          "offset": 0
+        }
+      ]
+    }
+  ]
+}

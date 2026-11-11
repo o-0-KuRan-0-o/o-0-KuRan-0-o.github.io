@@ -1,0 +1,519 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>M5StampS3A Firmware Installer</title>
+
+<!-- ESP Web Tools -->
+<script
+    type="module"
+    src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module">
+</script>
+
+<style>
+
+/* =========================
+   基本設定
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 30px 15px;
+
+    font-family:
+        "Segoe UI",
+        "Noto Sans JP",
+        sans-serif;
+
+    background: #f2f3f5;
+    color: #333;
+}
+
+.container {
+    max-width: 520px;
+    margin: 0 auto;
+
+    padding: 30px;
+
+    background: #fff;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 4px 20px rgba(0,0,0,0.06);
+}
+
+/* =========================
+   タイトル
+========================= */
+
+h1 {
+    margin: 0 0 8px;
+
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.subtitle {
+    margin-bottom: 30px;
+
+    font-size: 13px;
+    color: #888;
+}
+
+/* =========================
+   セクション
+========================= */
+
+.section {
+    margin-bottom: 25px;
+}
+
+.section-title {
+    margin-bottom: 10px;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* =========================
+   ファームウェア選択
+========================= */
+
+select {
+    width: 100%;
+    height: 48px;
+
+    padding: 0 12px;
+
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    background: #fff;
+
+    font-size: 15px;
+    color: #333;
+
+    cursor: pointer;
+}
+
+select:focus {
+    outline: none;
+    border-color: #3478f6;
+}
+
+/* =========================
+   ファームウェア情報
+========================= */
+
+.firmware-info {
+    padding: 15px;
+
+    background: #f6f7f9;
+
+    border-radius: 8px;
+
+    margin-top: 15px;
+}
+
+.firmware-name {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.firmware-version {
+    margin-top: 5px;
+
+    font-size: 12px;
+    color: #888;
+}
+
+.firmware-description {
+    margin-top: 10px;
+
+    font-size: 13px;
+    line-height: 1.6;
+
+    color: #666;
+}
+
+/* =========================
+   接続説明
+========================= */
+
+.connection-box {
+    padding: 15px;
+
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.connection-box strong {
+    color: #333;
+}
+
+/* =========================
+   書き込みボタン
+========================= */
+
+.install-area {
+    margin-top: 25px;
+}
+
+esp-web-install-button {
+    display: block;
+    width: 100%;
+}
+
+esp-web-install-button::part(button) {
+    width: 100%;
+    min-height: 50px;
+
+    border-radius: 8px;
+
+    background: #3478f6;
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    border: none;
+
+    cursor: pointer;
+}
+
+esp-web-install-button[install-unsupported] {
+    display: none;
+}
+
+/* =========================
+   注意事項
+========================= */
+
+.notice {
+    margin-top: 25px;
+    padding-top: 18px;
+
+    border-top: 1px solid #eee;
+
+    font-size: 12px;
+    line-height: 1.8;
+
+    color: #888;
+}
+
+/* =========================
+   フッター
+========================= */
+
+footer {
+    margin-top: 25px;
+
+    text-align: center;
+
+    font-size: 11px;
+    color: #aaa;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <!-- =====================
+         タイトル
+    ====================== -->
+
+    <h1>M5StampS3A Firmware Installer</h1>
+
+    <div class="subtitle">
+        USB Firmware Installation Tool
+    </div>
+
+
+    <!-- =====================
+         ファームウェア選択
+    ====================== -->
+
+    <div class="section">
+
+        <div class="section-title">
+            ファームウェアを選択
+        </div>
+
+        <select id="firmware">
+
+            <option value="mouse">
+                Mouse Controller
+            </option>
+
+            <option value="keyboard">
+                Keyboard Controller
+            </option>
+
+            <option value="gamepad">
+                Gamepad Controller
+            </option>
+
+        </select>
+
+
+        <!-- ファームウェア情報 -->
+
+        <div class="firmware-info">
+
+            <div
+                class="firmware-name"
+                id="firmwareName">
+                Mouse Controller
+            </div>
+
+            <div
+                class="firmware-version"
+                id="firmwareVersion">
+                Version 1.0.0
+            </div>
+
+            <div
+                class="firmware-description"
+                id="firmwareDescription">
+                マウス操作用ファームウェアです。
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================
+         USB接続説明
+    ====================== -->
+
+    <div class="section">
+
+        <div class="section-title">
+            USB接続
+        </div>
+
+        <div class="connection-box">
+
+            1. M5StampS3AをUSBケーブルで接続してください。<br>
+
+            2. USBデータ通信に対応したケーブルを使用してください。<br>
+
+            3. 書き込みボタンを押してUSBデバイスを選択してください。
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================
+         書き込み
+    ====================== -->
+
+    <div class="install-area">
+
+        <esp-web-install-button
+            id="installer"
+            manifest="firmware/mouse/manifest.json">
+
+        </esp-web-install-button>
+
+    </div>
+
+
+    <!-- =====================
+         注意事項
+    ====================== -->
+
+    <div class="notice">
+
+        <strong>注意事項</strong><br>
+
+        ・書き込み中はUSBケーブルを抜かないでください。<br>
+
+        ・新規インストール時はFlash消去の確認が表示されます。<br>
+
+        ・Flash消去を選択すると既存のデータは失われます。<br>
+
+        ・Google ChromeまたはMicrosoft Edgeを使用してください。<br>
+
+        ・USB接続が認識されない場合はBOOTモードで接続してください。
+
+    </div>
+
+
+    <!-- =====================
+         フッター
+    ====================== -->
+
+    <footer>
+
+        M5StampS3A Firmware Installer
+
+    </footer>
+
+</div>
+
+
+<!-- =========================
+     JavaScript
+========================= -->
+
+<script type="module">
+
+// =============================
+// ファームウェア一覧
+// =============================
+
+const firmwareList = {
+
+    mouse: {
+
+        name: "Mouse Controller",
+
+        version: "1.0.0",
+
+        description:
+            "マウス操作用ファームウェアです。",
+
+        manifest:
+            "firmware/mouse/manifest.json"
+
+    },
+
+
+    keyboard: {
+
+        name: "Keyboard Controller",
+
+        version: "1.0.0",
+
+        description:
+            "キーボード操作用ファームウェアです。",
+
+        manifest:
+            "firmware/keyboard/manifest.json"
+
+    },
+
+
+    gamepad: {
+
+        name: "Gamepad Controller",
+
+        version: "1.0.0",
+
+        description:
+            "ゲームパッド操作用ファームウェアです。",
+
+        manifest:
+            "firmware/gamepad/manifest.json"
+
+    }
+
+};
+
+
+// =============================
+// HTML要素
+// =============================
+
+const selector =
+    document.getElementById("firmware");
+
+const installer =
+    document.getElementById("installer");
+
+const firmwareName =
+    document.getElementById("firmwareName");
+
+const firmwareVersion =
+    document.getElementById("firmwareVersion");
+
+const firmwareDescription =
+    document.getElementById("firmwareDescription");
+
+
+// =============================
+// ファームウェア切り替え
+// =============================
+
+function updateFirmware() {
+
+    const selected =
+        firmwareList[selector.value];
+
+    if (!selected) {
+        return;
+    }
+
+
+    // ManifestのURLを設定
+
+    const manifestURL = new URL(
+        selected.manifest,
+        window.location.href
+    ).href;
+
+
+    // ESP Web ToolsにManifestを設定
+
+    installer.setAttribute(
+        "manifest",
+        manifestURL
+    );
+
+
+    // ファームウェア情報を更新
+
+    firmwareName.textContent =
+        selected.name;
+
+    firmwareVersion.textContent =
+        "Version " + selected.version;
+
+    firmwareDescription.textContent =
+        selected.description;
+
+}
+
+
+// =============================
+// 選択変更イベント
+// =============================
+
+selector.addEventListener(
+    "change",
+    updateFirmware
+);
+
+
+// =============================
+// 初期設定
+// =============================
+
+updateFirmware();
+
+</script>
+
+</body>
+
+</html>
