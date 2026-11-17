@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>使い方</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      padding: 42px 18px 36px;
+      background: #000;
+      color: #f5f5f5;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+      text-align: center;
+      line-height: 1.65;
+    }
+    .page {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    p { margin: 0 0 22px; }
+    .intro { margin-bottom: 8px; }
+    .button {
+      display: inline-block;
+      padding: 8px 15px;
+      border: 1px solid #00a9e8;
+      border-radius: 5px;
+      background: #08b9f5;
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .instructions {
+      margin: 36px 0 22px;
+    }
+    .config-example {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2px 12px;
+      margin: 22px 0 24px;
+      text-align: left;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .config-example .comment { white-space: nowrap; }
+    .section-title {
+      margin: 28px 0 10px;
+      font-size: 17px;
+      font-weight: normal;
+    }
+    .image-frame {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      aspect-ratio: 1 / 1.25;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      overflow: hidden;
+      color: #fff;
+      font-size: clamp(42px, 12vw, 66px);
+    }
+    .image-frame img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .key-list-link {
+      display: inline-block;
+      margin: -7px 0 14px;
+      padding: 0 5px;
+      background: #f4f4f4;
+      color: #111;
+      border-radius: 2px;
+      font-size: 15px;
+      line-height: 1.5;
+      text-decoration: none;
+    }
+    .key-category-menu {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      width: 100%;
+      margin: 0 0 14px;
+      text-align: left;
+    }
+    .key-category-menu button {
+      min-height: 42px;
+      padding: 7px 8px;
+      border: 1px solid #555;
+      border-radius: 4px;
+      background: #171717;
+      color: #f5f5f5;
+      font-family: inherit;
+      font-size: 13px;
+      text-align: left;
+      cursor: pointer;
+    }
+    .key-category-menu button:active,
+    .key-category-menu button:focus {
+      background: #333;
+      outline: 1px solid #aaa;
+    }
+    .keycode-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 580px;
+      margin: 0;
+      color: #ddd;
+      text-align: center;
+      font-size: 17px;
+    }
+    .key-list-panel {
+      width: 100%;
+      padding: 18px 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      text-align: left;
+    }
+    .key-category { margin: 0 0 25px; }
+    .key-category:last-child { margin-bottom: 0; }
+    .key-category h2 {
+      margin: 0 0 12px;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: Arial, "Noto Sans JP", sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    th, td {
+      padding: 8px 3px;
+      border-bottom: 1px solid #191919;
+      text-align: left;
+      vertical-align: middle;
+    }
+    th { font-weight: 700; }
+    th:first-child, td:first-child { width: 70%; }
+    code {
+      display: inline-block;
+      padding: 1px 4px;
+      border-radius: 3px;
+      background: #242424;
+      color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .notes {
+      margin: 22px 0 28px;
+      line-height: 1.9;
+    }
+    .top-button {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 8px 13px;
+      border-radius: 5px;
+      background: #fff;
+      color: #111;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+    }
+    @media (max-width: 380px) {
+      body { padding-right: 14px; padding-left: 14px; }
+      .config-example { font-size: 11px; gap: 2px 7px; }
+      table { font-size: 13px; }
+    }
+  </style>
+</head>
+<body id="top">
+  <main class="page">
+    <p class="intro">初回のみファームウェアの書き込みを行う必要があります。<br>BOOTボタンは[9]です。</p>
+    <a class="button" href="firmware.html">書き込みページ</a>
+
+    <div class="instructions">
+      デバイスストレージにあるkeymap.txtを<br>
+      メモ帳で編集してキー設定を行います。
+    </div>
+
+    <p>
+      1つのボタンに3つまでキーを設定可能。<br>
+      修飾キーは先頭に記入してください。<br>
+      キーを設定しない場合はNONEを記入します。<br>
+      ボタン[14]は長押しが連続入力になります。
+    </p>
+
+    <div class="config-example" aria-label="keymap.txtの記述例">
+      <span>SW1</span><span class="comment">・・・スイッチ番号。</span>
+      <span>SHORT PRESS[CONTROL][C][NONE]</span><span class="comment">・・・短押しした時に入力するキー。</span>
+      <span>LONG PRESS[NONE][NONE][NONE]</span><span class="comment">・・・長押しした時に入力するキー。</span>
+      <span>PRESS TIME[5]</span><span class="comment">・・・長押しと判定するまでの時間。</span>
+    </div>
+
+    <h2 class="section-title">ボタンの配置</h2>
+    <div class="image-frame">
+      <img src="../../images/Page_Device_List/Device002/howto/key_pos.jpg" alt="ボタンの配置" onerror="this.style.display='none'; this.parentElement.textContent='画像';">
+    </div>
+
+    <h2 class="section-title" id="keycodes">キーコード一覧</h2>
+    <nav class="key-category-menu" id="keyCategoryMenu" aria-label="キーコードの分類">
+      <button type="button" data-category="normal">1. 通常のキーボード入力</button>
+      <button type="button" data-category="basic">2. 基本キー</button>
+      <button type="button" data-category="arrow">3. 矢印キー</button>
+      <button type="button" data-category="symbol">4. 記号キー</button>
+      <button type="button" data-category="other">5. その他のキーボードキー</button>
+      <button type="button" data-category="modifier">6. 修飾キー</button>
+      <button type="button" data-category="mouse">7. マウスボタン</button>
+      <button type="button" data-category="special">8. 特殊キーコード</button>
+    </nav>
+
+    <section class="key-list-panel" id="keycodeDisplay" aria-live="polite">
+      <p class="keycode-placeholder">キーコード表示</p>
+    </section>
+    <div class="notes">
+      <p>無線で接続する場合はPAIRINGの<br>キーコードを入力してペアリングを行ってください。</p>
+      <p>LAYERはkeymap.txtの切り替えを行います。</p>
+      <p>SLEEPでスリープモードにします。</p>
+      <p>自動スリープの初期設定は10分です。<br>SLEEP TIME[600]</p>
+    </div>
+
+    <a class="top-button" href="Device002.html">戻る</a>
+  </main>
+  <script>
+    const keycodeData = {
+      normal: {
+        title: "1. 通常のキーボード入力",
+        rows: [
+          ["A～Z", "アルファベット"],
+          ["0～9", "数字"],
+          ["F1～F12", "ファンクションキー"]
+        ]
+      },
+      basic: {
+        title: "2. 基本キー",
+        rows: [
+          ["ENTER", "Enter"], ["RETURN", "Enter（別名）"],
+          ["ESC", "Escape"], ["ESCAPE", "Escape（別名）"],
+          ["BACKSPACE", "Backspace"], ["TAB", "Tab"],
+          ["SPACE", "Space"], ["DELETE", "Delete"],
+          ["INSERT", "Insert"], ["HOME", "Home"],
+          ["END", "End"], ["PAGEUP", "Page Up"],
+          ["PAGEDOWN", "Page Down"]
+        ]
+      },
+      arrow: {
+        title: "3. 矢印キー",
+        rows: [["UP", "↑"], ["DOWN", "↓"], ["LEFT", "←"], ["RIGHT", "→"]]
+      },
+      symbol: {
+        title: "4. 記号キー",
+        rows: [
+          ["MINUS", "-"], ["EQUAL", "="],
+          ["LEFTBRACKET", "["], ["RIGHTBRACKET", "]"],
+          ["BACKSLASH", "¥"], ["SEMICOLON", ";"],
+          ["QUOTE", "'"], ["GRAVE", "`"],
+          ["COMMA", ","], ["PERIOD", "."], ["SLASH", "/"]
+        ]
+      },
+      other: {
+        title: "5. その他のキーボードキー",
+        rows: [
+          ["CAPSLOCK", "Caps Lock"], ["PRINTSCREEN", "Print Screen"],
+          ["SCROLLLOCK", "Scroll Lock"], ["PAUSE", "Pause"],
+          ["NUMLOCK", "Num Lock"]
+        ]
+      },
+      modifier: {
+        title: "6. 修飾キー",
+        rows: [
+          ["CONTROL", "Control"], ["CTRL", "Control（別名）"],
+          ["SHIFT", "Shift"], ["ALT", "Alt"],
+          ["GUI", "Windows / Command"], ["WIN", "Windows（別名）"],
+          ["COMMAND", "Command（別名）"],
+          ["RIGHT_CONTROL", "右 Control"], ["RIGHT_SHIFT", "右 Shift"],
+          ["RIGHT_ALT", "右 Alt"], ["RIGHT_GUI", "右 GUI"]
+        ]
+      },
+      mouse: {
+        title: "7. マウスボタン",
+        rows: [
+          ["MOUSE_LEFT", "左クリック"],
+          ["MOUSE_RIGHT", "右クリック"],
+          ["MOUSE_MIDDLE", "中央クリック"]
+        ]
+      },
+      special: {
+        title: "8. 特殊キーコード",
+        rows: [
+          ["NONE", "キー入力なし"],
+          ["LAYER", "keymap.txt / keymap2.txt の切り替え"],
+          ["PAIRING", "ペアリングモード開始"],
+          ["SLEEP", "スリープ状態にする"]
+        ]
+      }
+    };
+
+    const menu = document.getElementById("keyCategoryMenu");
+    const display = document.getElementById("keycodeDisplay");
+
+    menu.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-category]");
+      if (!button) return;
+
+      const selected = keycodeData[button.dataset.category];
+      if (!selected) return;
+
+      const rows = selected.rows.map(([key, description]) =>
+        `<tr><td><code>${key}</code></td><td>${description}</td></tr>`
+      ).join("");
+
+      display.innerHTML = `
+        <div class="key-category">
+          <h2>${selected.title}</h2>
+          <table>
+            <thead><tr><th>キーコード</th><th>動作</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>`;
+    });
+  </script>
+
+</body>
+</html>

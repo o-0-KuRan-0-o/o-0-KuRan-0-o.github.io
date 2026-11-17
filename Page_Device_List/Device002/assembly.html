@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>組み立て</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 30px 10px;
+    background: #000;
+    color: #fff;
+    font-family: "Yu Mincho", "Noto Serif JP", serif;
+}
+
+.container {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+/* 必要なもの */
+.parts {
+    width: 257px;
+    margin: 5px auto;
+    padding: 6px;
+    border: 2px solid #fff;
+    border-radius: 7px;
+}
+
+.parts h2 {
+    font-size: 20px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.parts ul {
+    font-size: 12px;
+    padding-left: 14px;
+    margin: 0;
+}
+
+/* ダウンロード */
+.download-area {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.download-text {
+    font-size: 11px;
+    margin: 5px 0;
+}
+
+.download-button {
+    display: inline-block;
+    padding: 5px 12px;
+    background: #00aaff;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.download-button:hover {
+    opacity: 0.75;
+}
+
+/* 見出し */
+h1 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: normal;
+    margin: 25px 0 8px;
+}
+
+/* はんだ付け手順 */
+.step {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 8px 0 12px;
+}
+
+.step img {
+    width: 38%;
+    max-width: 240px;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+/* 説明文 */
+.step-description {
+    flex: 1;
+    font-size: 13px;
+    line-height: 1.4;
+    padding-top: 8px;
+}
+
+/* インサートナット */
+.insert-section {
+    margin-top: 38px;
+}
+
+.insert-section h2 {
+    text-align: center;
+    font-size: 19px;
+    font-weight: normal;
+    margin: 0 0 22px;
+}
+
+.insert-image {
+    display: block;
+    width: 210px;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    margin-left: 4px;
+}
+
+/* 戻るボタン */
+.back-area {
+    text-align: center;
+    margin: 20px 0 10px;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 8px 18px;
+    background: #fff;
+    color: #000;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 19px;
+}
+
+.back-button:hover {
+    background: #ddd;
+}
+
+/* スマートフォン */
+@media (max-width: 480px) {
+    .step-description {
+        font-size: 12px;
+    }
+
+    .insert-image {
+        width: 210px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- 必要なもの -->
+    <div class="parts">
+        <h2>組み立てに別途必要なもの</h2>
+        <ul>
+            <li>ESP32-S3-WROOM-1-N16R8</li>
+            <li>筐体</li>
+            <li>単3電池（アルカリ・ニッケル水素）</li>
+        </ul>
+    </div>
+
+    <!-- ダウンロード -->
+    <div class="download-area">
+        <p class="download-text">
+            筐体の3Dデータはこちらからダウンロードしてください。
+        </p>
+        <a href="files/STL.zip" class="download-button" download>
+            ダウンロード
+        </a>
+    </div>
+
+    <!-- はんだ付け -->
+    <h1>はんだ付け</h1>
+
+    <div class="step">
+        <img src="../../images/Page_Device_List/Device002/assembly/assembly01.jpg" alt="はんだ付け1">
+        <div class="step-description">
+            メインボードの裏面からはんだ付けを始めます。
+            <br>・ESP32 x1
+            <br>・ロータリーエンコーダー x1
+            <br>・静音タクトスイッチ x1
+            <br>・横向きタクトスイッチ x1
+        </div>
+    </div>
+
+    <div class="step">
+        <img src="../../images/Page_Device_List/Device002/assembly/assembly02.jpg" alt="はんだ付け2">
+        <div class="step-description">
+            表面に静音タクトスイッチをはんだ付けします。
+            <br>・静音タクトスイッチ x7
+        </div>
+    </div>
+
+    <div class="step">
+        <img src="../../images/Page_Device_List/Device002/assembly/assembly03.jpg" alt="はんだ付け3">
+        <div class="step-description">
+            裏面にピンヘッダーをはんだ付けします。
+            <br>・ピンヘッダー x1
+        </div>
+    </div>
+
+    <div class="step">
+        <img src="../../images/Page_Device_List/Device002/assembly/assembly04.jpg" alt="はんだ付け4">
+        <div class="step-description">
+            表面に中空ロータリーエンコーダーを
+            はんだ付けします。
+            <br>・中空ロータリーエンコーダー x1
+        </div>
+    </div>
+
+    <div class="step">
+        <img src="../../images/Page_Device_List/Device002/assembly/assembly05.jpg" alt="はんだ付け5">
+        <div class="step-description">
+            サイドボードにはんだ付けします。
+            <br>裏表に注意してください。
+            <br>背高タクトスイッチの足が長いので切断してください。
+            <br>・横向きタクトスイッチ x2
+            <br>・背高タクトスイッチ x1
+        </div>
+    </div>
+
+    <div class="step">
+        <img src="../../images/Page_Device_List/Device002/assembly/assembly06.jpg" alt="はんだ付け6">
+        <div class="step-description">
+            ホイールを先に取り付けボード同士を繋げます。<br>
+            塗装のためホイールがはまらないことがあります。<br>カッターなどで少し削ってください。
+            <br>・ホイール x1
+        </div>
+    </div>
+
+    <div class="step">
+        <img src="../../images/Page_Device_List/Device002/assembly/assembly07.jpg" alt="はんだ付け7">
+        <div class="step-description">
+            電池ホルダーをはんだ付けします。
+            <br>ホルダーの間に絶縁テープを貼ります。
+            <br>・電池ホルダー x4
+        </div>
+    </div>
+
+    <!-- インサートナット埋め込み -->
+    <div class="insert-section">
+
+        <h2>インサートナット埋め込み</h2>
+
+        <img
+            src="../../images/Page_Device_List/Device002/assembly/assembly08.jpg"
+            alt="インサートナット埋め込み"
+            class="insert-image"
+        >
+
+    </div>
+
+    <!-- 戻る -->
+    <div class="back-area">
+        <a href="Device002.html" class="back-button">戻る</a>
+    </div>
+
+</div>
+
+</body>
+</html>

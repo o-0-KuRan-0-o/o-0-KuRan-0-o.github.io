@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VorteX [ 無線対応版 ]</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8YFKYCDQXW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8YFKYCDQXW');
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 24px 0 40px;
+      color: #fff;
+      background: #000;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+    }
+
+    .page {
+      width: min(100% - 48px, 780px);
+      margin: 0 auto;
+    }
+
+    /* 上部の画像・タイトルエリア */
+    .hero {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1.25 / 1;
+      overflow: hidden;
+      border: 2px solid #000;
+      border-radius: 9px;
+      background-color: #000;
+      background-image: url("../../images/Page_Device_List/Device002/vortex_bg1.jpg");
+      background-position: center;
+      background-size: cover;
+    }
+
+    /* 上部画像の切り替えボタン */
+    .hero-thumbnails {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      width: 100%;
+      margin: 14px 0 0;
+    }
+
+    .hero-thumbnail {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      padding: 0;
+      overflow: hidden;
+      border: 2px solid #555;
+      border-radius: 8px;
+      background: #111;
+      cursor: pointer;
+      opacity: 0.72;
+      transition: opacity 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    .hero-thumbnail:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+
+    .hero-thumbnail.active {
+      border-color: #fff;
+      opacity: 1;
+    }
+
+    .hero-thumbnail img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* 画像の上に文字を読みやすく配置するための薄い背景 */
+    .hero-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 7%;
+      background: rgba(255, 255, 255, 0.0);
+    }
+
+    .hero h1 {
+      margin: 0 0 28px;
+      font-size: clamp(42px, 8vw, 88px);
+      font-weight: 400;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .hero-description {
+      width: 53%;
+      margin: 0 0 0 auto;
+      font-size: clamp(15px, 2.6vw, 25px);
+      line-height: 1.55;
+      overflow-wrap: anywhere;
+    }
+
+    /* 下部の本文 */
+    .main-text {
+      width: 90%;
+      margin: 38px auto 28px;
+      font-size: clamp(17px, 2.8vw, 27px);
+      line-height: 1.48;
+      overflow-wrap: anywhere;
+      text-align: center;
+    }
+
+    /* リンクボタン */
+    .navigation {
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    .navigation-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px 28px;
+      width: 100%;
+    }
+
+    .guide-links {
+      display: flex;
+      justify-content: flex-end;
+      gap: 18px 28px;
+    }
+
+    .navigation a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 76px;
+      padding: 8px 28px;
+      border: 2px solid #000;
+      border-radius: 8px;
+      color: #000;
+      background: #fff;
+      font-size: clamp(25px, 4.2vw, 43px);
+      line-height: 1.2;
+      text-decoration: none;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .navigation a:hover {
+      color: #fff;
+      background: #000;
+    }
+
+    .navigation .purchase {
+      margin-right: auto;
+      color: #fff;
+      background: #38bcdd;
+    }
+
+    .navigation .devices {
+      display: flex;
+      width: fit-content;
+      margin: 10px auto 0;
+    }
+
+    @media (max-width: 560px) {
+      body {
+        padding-top: 14px;
+      }
+
+      .page {
+        width: calc(100% - 28px);
+      }
+
+      .hero {
+        aspect-ratio: 0.95 / 1;
+      }
+
+      .hero-thumbnails {
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .hero-thumbnail {
+        border-width: 1px;
+        border-radius: 6px;
+      }
+
+      .hero-content {
+        padding: 6%;
+      }
+
+      .hero h1 {
+        margin-bottom: 20px;
+        font-size: clamp(38px, 10vw, 58px);
+      }
+
+      .hero-description {
+        width: 78%;
+        font-size: clamp(14px, 3.7vw, 18px);
+      }
+
+      .main-text {
+        width: 94%;
+        margin-top: 25px;
+        font-size: clamp(16px, 4vw, 20px);
+      }
+
+      .navigation {
+        width: 94%;
+      }
+
+      .navigation-row {
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .guide-links {
+        gap: 12px;
+        margin-left: auto;
+      }
+
+      .navigation a {
+        min-height: 58px;
+        padding: 7px 18px;
+        font-size: clamp(22px, 6vw, 30px);
+      }
+
+      .navigation .devices {
+        margin: 12px auto 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-content">
+        <h1 id="page-title"></h1>
+        <p class="hero-description" id="hero-description">
+          <br><br><br><br><br>
+          　ペイントソフトでの利用を<br>
+          　想定した左手デバイスです。<br>
+          　ボタン１４・ホイール２<br>
+          　短押し・長押し判定あり。<br>
+          　キーはメモ帳で設定。<br>
+          　設定はデバイス本体に保存。<br>
+          　無線での接続に対応。
+        </p>
+      </div>
+    </section>
+
+    <div class="hero-thumbnails" aria-label="上部画像の切り替え">
+      <button class="hero-thumbnail active" type="button"
+              data-image="../../images/Page_Device_List/Device002/vortex_bg1.jpg"
+              data-description="<br><br><br><br><br>ペイントソフトでの利用を<br>想定した左手デバイスです。<br>ボタン１４・ホイール２<br>短押し・長押し判定あり。<br>キーはメモ帳で設定。<br>設定はデバイス本体に保存。<br>無線での接続に対応。"
+              aria-label="画像1に切り替え" aria-pressed="true">
+        <img src="../../images/Page_Device_List/Device002/vortex_bg1.jpg" alt="画像1">
+      </button>
+      <button class="hero-thumbnail" type="button"
+              data-image="../../images/Page_Device_List/Device002/vortex_bg2.jpg"
+              data-title=""
+              data-description=""
+              aria-label="画像2に切り替え" aria-pressed="false">
+        <img src="../../images/Page_Device_List/Device002/vortex_bg2.jpg" alt="画像2">
+      </button>
+      <button class="hero-thumbnail" type="button"
+              data-image="../../images/Page_Device_List/Device002/vortex_bg3.jpg"
+              data-title=""
+              data-description=""
+              aria-label="画像3に切り替え" aria-pressed="false">
+        <img src="../../images/Page_Device_List/Device002/vortex_bg3.jpg" alt="画像3">
+      </button>
+    </div>
+
+    <section class="main-text">
+      本デバイスは左手専用となっております。<br>
+      誤った使い方などした場合、<br>
+      破損や怪我の原因になりますのでご注意下さい。<br>
+      <br>
+      また、個人制作物なので通常通りの使い方を<br>
+      していても同様のことが起きる可能性があります。<br>
+      <br>
+      故障や損害が起きても対応出来かねます。<br>
+      自己責任での使用をお願い致します。<br>
+      <br>
+      本デバイスに対してのサポートは一切行いません。<br>
+      <br>
+      本商品はご自分で組み立て・別途筐体の注文を<br>
+      行っていただく必要があります。<br>
+      筐体の注文はこちらで確認したものは
+      <br>JLCPCB/JLC3DPのMJF(PA12S-HP Nylon)となります。<br>
+    </section>
+
+    <nav class="navigation" aria-label="ページメニュー">
+      <div class="navigation-row">
+        <a class="purchase" href="https://jp.mercari.com/user/profile/335521531?status=on_sale">購入</a>
+        <div class="guide-links">
+          <a href="assembly.html">組み立て</a>
+          <a href="howto.html">使い方</a>
+        </div>
+      </div>
+      <a class="devices" href="../../Device_List.html">デバイス一覧</a>
+    </nav>
+  </main>
+
+  <script>
+    // サムネイルを押すと、上部画像と重ねているテキストを切り替える
+    const hero = document.querySelector(".hero");
+    const heroTitle = document.getElementById("page-title");
+    const heroDescription = document.getElementById("hero-description");
+    const thumbnailButtons = document.querySelectorAll(".hero-thumbnail");
+
+    thumbnailButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const image = button.dataset.image;
+        const title = button.dataset.title;
+        const description = button.dataset.description;
+
+        hero.style.backgroundImage = `url("${image}")`;
+        heroTitle.textContent = title;
+        heroDescription.innerHTML = description;
+
+        thumbnailButtons.forEach((item) => {
+          const selected = item === button;
+          item.classList.toggle("active", selected);
+          item.setAttribute("aria-pressed", selected ? "true" : "false");
+        });
+      });
+    });
+  </script>
+</body>
+</html>
