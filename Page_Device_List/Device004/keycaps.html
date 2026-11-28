@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>キーキャップ</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8YFKYCDQXW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8YFKYCDQXW');
+  </script>
+  
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 32px 4% 45px;
+    background-color: #000;
+    color: #fff;
+    font-family: sans-serif;
+}
+
+/* 画像一覧 */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 26px;
+}
+
+/* 画像ボタン */
+.image-item {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1.08 / 1;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: opacity 0.2s;
+}
+
+.image-item:hover {
+    opacity: 0.7;
+}
+
+/* 画像 */
+.image-item img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* 戻るボタン */
+.back-area {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.back-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 236px;
+    height: 110px;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 48px;
+    transition: opacity 0.2s;
+}
+
+.back-button:hover {
+    opacity: 0.7;
+}
+
+/* スマートフォン */
+@media screen and (max-width: 600px) {
+    body {
+        padding: 20px 4% 30px;
+    }
+
+    .image-grid {
+        gap: 12px;
+    }
+
+    .image-item {
+        border-radius: 7px;
+    }
+
+    .back-area {
+        margin-top: 24px;
+    }
+
+    .back-button {
+        width: 120px;
+        height: 58px;
+        font-size: 26px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="image-grid">
+
+    <!-- 画像1 -->
+    <a href="files/keycaps/keycap001.zip" class="image-item">
+        <img src="../../images/Page_Device_List/Device004/keycaps/Keycap_001.png" alt="画像1">
+    </a>
+
+    <!-- 画像2 -->
+    <a href="files/keycaps/keycap002.zip" class="image-item">
+        <img src="../../images/Page_Device_List/Device004/keycaps/Keycap_002.png" alt="画像2">
+    </a>
+
+    <!-- 画像3 -->
+    <a href="files/keycaps/keycap003.zip" class="image-item">
+        <img src="../../images/Page_Device_List/Device004/keycaps/Keycap_003.png" alt="画像3">
+    </a>
+
+    <!-- 画像4 -->
+    <a href="files/keycaps/keycap004.zip" class="image-item">
+        <img src="../../images/Page_Device_List/Device004/keycaps/Keycap_004.png" alt="画像4">
+    </a>
+
+    <!-- 画像5 -->
+    <a href="files/keycaps/keycap005.zip" class="image-item">
+        <img src="../../images/Page_Device_List/Device004/keycaps/Keycap_005.png" alt="画像5">
+    </a>
+
+    <!-- 画像6 -->
+    <a href="link006.html" class="image-item">
+        <img src="../../images/Page_Device_List/Device004/keycaps/Keycap_Blank.png" alt="画像6">
+    </a>
+
+</div>
+
+<!-- 戻るボタン -->
+<div class="back-area">
+    <a href="../Distribute.html" class="back-button">戻る</a>
+</div>
+
+</body>
+</html>

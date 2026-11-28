@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>配布データ</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 22px 15px;
+    background: #000;
+    color: #fff;
+    font-family: "Yu Mincho", "游明朝", "Noto Serif JP", serif;
+}
+
+.container {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* タイトル */
+.title {
+    width: 100%;
+    min-height: 166px;
+    border: 3px solid #fff;
+    border-radius: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(40px, 10vw, 100px);
+    margin-bottom: 26px;
+}
+
+/* 項目エリア */
+.menu-area {
+    width: 100%;
+    min-height: 380px;
+    border: 3px solid #fff;
+    border-radius: 11px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 35px 15px;
+}
+
+/* リンクボタン */
+.menu-button {
+    width: 270px;
+    max-width: 90%;
+    min-height: 88px;
+    border: 3px solid #fff;
+    border-radius: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 36px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.menu-button:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* 戻るボタン */
+.back-button {
+    width: 210px;
+    min-height: 120px;
+    border: 3px solid #fff;
+    border-radius: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 28px auto 0;
+    color: #fff;
+    text-decoration: none;
+    font-size: 76px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.back-button:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* スマートフォン */
+@media (max-width: 500px) {
+    .title {
+        min-height: 110px;
+    }
+
+    .menu-area {
+        min-height: 300px;
+        gap: 14px;
+    }
+
+    .menu-button {
+        min-height: 70px;
+        font-size: 29px;
+    }
+
+    .back-button {
+        width: 170px;
+        min-height: 90px;
+        font-size: 58px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- タイトル -->
+    <div class="title">
+        配布データ
+    </div>
+
+    <!-- メニュー -->
+    <div class="menu-area">
+
+        <a href="Device004/keycaps.html" class="menu-button">
+            キーキャップ
+        </a>
+
+        <a href="aaaaaaa1.html" class="menu-button">
+            NONE1
+        </a>
+
+        <a href="aaaaaaa2.html" class="menu-button">
+            NONE2
+        </a>
+
+    </div>
+
+    <!-- 戻る -->
+    <a href="../Device_List.html" class="back-button">
+        戻る
+    </a>
+
+</div>
+
+</body>
+</html>
